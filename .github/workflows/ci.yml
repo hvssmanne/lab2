@@ -1,0 +1,43 @@
+name: ML CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Training Script
+      run: |
+        python train.py
+
+    - name: Add Metrics to Job Summary
+      run: |
+        echo "## Lab 2 - Automated ML Training" >> $GITHUB_STEP_SUMMARY
+        echo "**Name:** Harshitha Manne" >> $GITHUB_STEP_SUMMARY
+        echo "**Roll No:** 2022BCS0134" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Evaluation Metrics" >> $GITHUB_STEP_SUMMARY
+        cat outputs/results.json >> $GITHUB_STEP_SUMMARY
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: model-and-results
+        path: outputs/
