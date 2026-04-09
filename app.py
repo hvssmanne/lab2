@@ -6,6 +6,7 @@ app = FastAPI()
 
 model = joblib.load("model.pkl")
 
+
 @app.get("/")
 def home():
     return {"message": "Wine Quality Prediction API"}
