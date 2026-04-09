@@ -20,7 +20,9 @@ def predict(data: dict):
         prediction = model.predict(features)
 
         return {
-            "prediction": float(prediction[0])
+            "name": "Harshitha Manne",
+            "roll_no": "2022BCS0134",
+            "wine_quality": float(prediction[0])
         }
 
     except Exception as e:
