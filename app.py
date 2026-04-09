@@ -4,7 +4,6 @@ import numpy as np
 
 app = FastAPI()
 
-# Load model
 model = joblib.load("model.pkl")
 
 @app.get("/")
