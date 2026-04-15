@@ -2,17 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USER = "your_dockerhub_username"
-        IMAGE_NAME = "wine-quality-api"
+        DOCKERHUB_USER = "darksapien2305"   // ✅ change this
+        IMAGE_NAME = "harshitha_2022bcs0134"
     }
 
     stages {
-
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/hvssmanne/lab2.git'
-            }
-        }
 
         stage('Setup Python') {
             steps {
